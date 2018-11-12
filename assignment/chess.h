@@ -26,6 +26,7 @@
    bool is_occupied;
    struct ChessPiece piece;
  };
+ 
 
 typedef struct ChessSquare ChessBoard [8][8];
 typedef char File;
