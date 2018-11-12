@@ -142,15 +142,45 @@
 
 
  bool squares_share_knights_move (File s1_f, Rank s1_r, File s2_f, Rank s2_r){
-   printf("%d %d %d\n",is_square_ok(s1_f,s1_r),is_square_ok(s2_f,s2_r), squares_share_diagonal(s1_f,s1_r,s2_f,s2_r));
-   return is_square_ok(s1_f,s1_r) && is_square_ok(s2_f,s2_r) && squares_share_diagonal(s1_f,s1_r,s2_f,s2_r);
+   return false;
  }
 
 
 
  bool 	squares_share_pawns_move (enum PieceColor color, enum MoveType move, File s1_f, Rank s1_r, File s2_f, Rank s2_r){
-   return false;
- }
+  if(move==NormalMove && color==White && s1_f==s2_f && s1_r+2 == s2_r)
+  {
+    return true;
+  }
+
+  else if(move==NormalMove && color==White && s1_f==s2_f && s1_r+1 == s2_r)
+  {
+    return true;
+  }
+
+  else if(move==CaptureMove && color==White && (s1_f==s2_f+1 || s1_f==s2_f-1) && s1_r+1 == s2_r)
+  {
+    return true;
+  }
+
+  if(move==NormalMove && color==Black && s1_f==s2_f && s1_r-2 == s2_r)
+  {
+    return true;
+  }
+
+  else if(move==NormalMove && color==Black && s1_f==s2_f && s1_r-1 == s2_r)
+  {
+    return true;
+  }
+
+  else if(move==CaptureMove && color==Black && (s1_f==s2_f+1 || s1_f==s2_f-1) && s1_r-1 == s2_r)
+  {
+    return true;
+  }
+
+
+  return false;
+}
  bool 	squares_share_queens_move (File s1_f, Rank s1_r, File s2_f, Rank s2_r){
    return false;
  }
