@@ -148,7 +148,7 @@
 
 
  bool 	squares_share_pawns_move (enum PieceColor color, enum MoveType move, File s1_f, Rank s1_r, File s2_f, Rank s2_r){
-  if(move==NormalMove && color==White && s1_f==s2_f && s1_r+2 == s2_r)
+  if(move==NormalMove && color==White && s1_f==s2_f && s1_r+2 == s2_r && s1_r==2)
   {
     return true;
   }
@@ -163,7 +163,7 @@
     return true;
   }
 
-  if(move==NormalMove && color==Black && s1_f==s2_f && s1_r-2 == s2_r)
+  if(move==NormalMove && color==Black && s1_f==s2_f && s1_r-2 == s2_r && s1_r==7)
   {
     return true;
   }
@@ -182,8 +182,31 @@
   return false;
 }
  bool 	squares_share_queens_move (File s1_f, Rank s1_r, File s2_f, Rank s2_r){
-   return false;
+   return squares_share_rank(s1_f, s1_r, s2_f, s2_r) || squares_share_file (s1_f, s1_r, s2_f, s2_r) || squares_share_diagonal(s1_f, s1_r, s2_f, s2_r);
  }
  bool 	squares_share_kings_move (File s1_f, Rank s1_r, File s2_f, Rank s2_r){
-   return false;
+   if(s1_f+1==s2_f && s1_r==s2_r)
+   {
+     return true;
+   }
+   else if(s1_f-1==s2_f && s1_r==s2_r)
+   {
+     return true;
+   }
+   else if(s1_f==s2_f && s1_r+1==s2_r)
+   {
+     return true;
+   }
+   else if(s1_f==s2_f && s1_r-1==s2_r)
+   {
+     return true;
+   }
+   else if(s1_f+1==s2_f && s1_r+1==s2_r)
+   {
+     return true;
+   }
+   else if(s1_f-1==s2_f && s1_r-1==s2_r)
+   {
+     return true;
+   }
  }
