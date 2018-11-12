@@ -178,7 +178,6 @@
     return true;
   }
 
-
   return false;
 }
  bool 	squares_share_queens_move (File s1_f, Rank s1_r, File s2_f, Rank s2_r){
@@ -209,4 +208,13 @@
    {
      return true;
    }
+   else if(s1_f+1==s2_f && s1_r-1==s2_r)
+   {
+     return true;
+   }
+   else if(s1_f-1==s2_f && s1_r+1==s2_r)
+   {
+     return true;
+   }
+   return false;
  }
