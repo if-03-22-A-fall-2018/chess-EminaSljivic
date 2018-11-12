@@ -14,7 +14,6 @@
  #include <stdlib.h>
  #include "general.h"
  #include "chess.h"
- #include <stdio.h>
 
  bool is_square_ok (File file, Rank rank){
    return file-'a'>=0 && file-'a'<=7 && rank-1>=0 && rank-1<=7;
@@ -142,12 +141,42 @@
 
 
  bool squares_share_knights_move (File s1_f, Rank s1_r, File s2_f, Rank s2_r){
+   if(s1_r+2==s2_r&&s1_f+1==s2_f)
+   {
+     return true;
+   }
+   else if(s1_r+2==s2_r&&s1_f-1==s2_f)
+   {
+     return true;
+   }
+   else if(s1_r-2==s2_r&&s1_f+1==s2_f)
+   {
+     return true;
+   }
+   else if(s1_r-2==s2_r&&s1_f-1==s2_f)
+   {
+     return true;
+   }
+   else if(s1_r-1==s2_r&&s1_f+2==s2_f)
+   {
+     return true;
+   }
+   else if(s1_r+1==s2_r&&s1_f+2==s2_f)
+   {
+     return true;
+   }
+   else if(s1_r-1==s2_r&&s1_f-2==s2_f)
+   {
+     return true;
+   }
+   else if(s1_r+1==s2_r&&s1_f-2==s2_f)
+   {
+     return true;
+   }
    return false;
  }
 
-
-
- bool 	squares_share_pawns_move (enum PieceColor color, enum MoveType move, File s1_f, Rank s1_r, File s2_f, Rank s2_r){
+ bool squares_share_pawns_move (enum PieceColor color, enum MoveType move, File s1_f, Rank s1_r, File s2_f, Rank s2_r){
   if(move==NormalMove && color==White && s1_f==s2_f && s1_r+2 == s2_r && s1_r==2)
   {
     return true;
@@ -163,7 +192,7 @@
     return true;
   }
 
-  if(move==NormalMove && color==Black && s1_f==s2_f && s1_r-2 == s2_r && s1_r==7)
+  else if(move==NormalMove && color==Black && s1_f==s2_f && s1_r-2 == s2_r && s1_r==7)
   {
     return true;
   }
