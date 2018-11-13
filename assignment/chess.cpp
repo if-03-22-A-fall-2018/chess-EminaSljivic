@@ -97,10 +97,6 @@
    add_piece(chess_board, 'f', 8, black_bishop);
    add_piece(chess_board, 'd', 8, black_queen);
    add_piece(chess_board, 'e', 8, black_king);
-
-
-
-
  }
  bool remove_piece (ChessBoard chess_board, File file, Rank rank){
    if(!is_square_ok(file,rank)||chess_board[rank-1][file-'a'].is_occupied==false)
@@ -124,14 +120,14 @@
 
    if(file_sum<0)
    {
-     file_sum=file_sum-file_sum-file_sum;
+     file_sum*=-1;
    }
 
    rank_sum=s1_r-s2_r;
 
    if(rank_sum<0)
    {
-     rank_sum=rank_sum-rank_sum-rank_sum;
+     rank_sum*=-1;
    }
 
    return rank_sum == file_sum && is_square_ok(s1_f,s1_r) && is_square_ok(s2_f,s2_r);
@@ -172,6 +168,7 @@
    return false;
  }
  bool squares_share_pawns_move (enum PieceColor color, enum MoveType move, File s1_f, Rank s1_r, File s2_f, Rank s2_r){
+
   if(move==NormalMove && color==White && s1_f==s2_f && s1_r+2 == s2_r && s1_r==2)
   {
     return true;
